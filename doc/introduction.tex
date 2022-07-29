@@ -3,18 +3,17 @@ The first purpose of a model is to provide, for a particular domain, a formal de
 The second purpose is to facilitate the interoperability between  different stakeholders involved in the domain. The interoperability consists in arranging exchanged data 
 so that any client can understand it without being concerned with its origin thus allowing the same code to process and compare data coming from different archives.  
 In other words, the more faithful is the data representation towards the data model, the better is the interoperability.
-The challenge for the VO ecosystem is to design the best way to map various data on standard models while respecting the existing frameworks, such as protocols and data formats.
+The challenge for the VO ecosystem is to design the best way to map various data on standard models while respecting the existing frameworks, protocols and data formats.
 
 We could imagine to develop a new data container specific for that purpose but any solution that ignores the existing assets would be utterly useless and would have no chance of being accepted.
 The model mapping solution must be based on VOTables since VOTable  \citep{2019ivoa.spec.1021O} is the standard data container within the VO.
 Unfortunately, if the VOTable schema allows a very good description of tabular data, it is not well suited for rendering views of complex data models.
 In the case of simple DAL protocols, this limitation has been worked around by specifying the metadata that must be present in the query responses; the model mapping is thereby defined by the standard.
-This approach is no longer applicable for complex models such as Cube or Provenance data models for which the data tree may vary from one instance to another.
 
-The basis on which the standard is designed is threefold 1) the data content is apriori unknown (e.g. TAP response), 2) it has to be mapped on models that are not defined yet and 3) the data model metadata used for these serialized data must be fully contained within a VOTable context.
-%It must also allow to bind native data with a model in a way that model-aware software can see it as model instances while maintaining the possibility to access them in their original layout.
-The  standard should allow a model-aware software to create instances of objects described by the model by binding together native column data , and also warrant the direct access to table columns as planned in the original data serialization.
+This approach is no longer applicable for complex models such as Cube or Provenance for which the data tree may vary from one instance to another.
 
+The basis on which the standard is designed is threefold 1) the data content is apriori unknown (e.g. TAP response), 2) it has to be mapped on models that are not defined yet and 3) the mapping block must be fully integrated within a VOTable context.
+It must also allow to bind native data with a model in a way that model-aware software can see it as model instances while maintaining the possibility to access them in their original serialization.
 
 The VOTable schema supports an XML attribute for this purpose, a UType, that partially meets this function. 
 UTypes are path-like strings (\texttt{m:a.b.c}) identifying model leaves. As there is no common rule to build UTypes,  each data model (e.g. Characterization, Obscore)  must come with its specific lists of UTypes. 
